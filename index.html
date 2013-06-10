@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Todo List</title>
+
+<!-- Bootstrap styles -->
+<link rel="stylesheet" href="bootstrap.min.css">
+
+<!-- Toggle Switch -->
+<link rel="stylesheet" href="toggle-switch.css">
+
+<script src="angular.1.1.2.min.js"></script>
+<script src="angular-resource.min.js"></script>
+<script src="ui-bootstrap-0.3.0.min.js"></script>
+<script src="ui-bootstrap-tpls-0.3.0.min.js"></script>
+
+<script src="app.js"></script>
+
+<style type="text/css">
+	@media (min-width: 644px) {
+		.mainlist {
+			width: 50%;
+		}
+	}
+	@media (max-width: 643px) {
+		.mainlist {
+			width: 95%;
+		}
+	}
+	.row-fluid {
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.row-fluid [class*="span"] {
+		margin-left: 0;
+	}
+	.accordion-heading {
+		font-size: 1.5em;
+	}
+	.breadcrumb {
+		margin: 1em 0;
+	}
+</style>
+</head>
+<body ng-app="todo_app" ng-controller="todo_ctlr">
+
+<div class="row-fluid mainlist">
+	<div class="span12">
+		<ul class="breadcrumb">
+			<li><a href="#">Lists</a> <span class="divider">&raquo;</span></li>
+			<li><a href="#">Projects</a> <span class="divider">&raquo;</span></li>
+			<li class="active">Todo App</li>
+		</ul>
+	</div>
+</div>
+
+<div class="row-fluid mainlist">
+	<div class="span12">
+		<accordion close-others="true">
+			<accordion-group heading="{{group.title}}" ng-repeat="group in groups">
+				<div class="row-fluid">
+					<div class="span12">
+						<slider id="status" value="Status" />
+					</div>
+				</div>
+				{{group.content}}
+			</accordion-group>
+			<accordion-group heading="Add Item?">
+				<p>The body of the accordion group grows to fit the contents</p>
+				<button class="btn btn-small" ng-click="addItem()">Add Item</button>
+				<div ng-repeat="item in items">{{item}}</div>
+			</accordion-group>
+		</accordion>
+	</div>
+</div>
+
+<div class="row-fluid mainlist">
+	<div class="span12">
+	<ul>
+		<li>http://angular-ui.github.io/bootstrap/</li>
+		<li>http://ghinda.net/css-toggle-switch/bootstrap.html</li>
+		<li>http://bootswatch.com/flatly/</li>
+		<li>http://www.lavishbootstrap.com/</li>
+		<li>http://bootstraphero.com/the-big-badass-list-of-twitter-bootstrap-resources</li>
+	</ul>
+	</div>
+</div>
+
+</body>
+</html>
