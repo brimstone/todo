@@ -3,9 +3,48 @@ angular.module('todo_app', ['ui.bootstrap', 'ui.brimstone.tpls', 'ui.brimstone.s
 function todo_ctlr($scope, $resource) {
 	$scope.lists = $resource(':action.json');
 	$scope.blah = window.innerWidth;
-	$scope.groups = $scope.lists.get({action: "getlist"}, function() {
-		console.log("Something!");
-	});
+	$scope.allitems = [];
+	$scope.newitem = {};
+	$scope.breadcrumbs = [];
+	$scope.update = function() {
+		var g = $scope.lists.get({action: "getlist"}, function() {
+			$scope.allitems = g;
+			$scope.switchTo("");
+		});
+	};
+	$scope.update();
+	$scope.switchTo = function(parent) {
+		// clear out our items
+		$scope.items = [];
+		// look at all of our items
+		for(var item in $scope.allitems) {
+			// if we find our parent
+			if ($scope.allitems[item].parent == parent) {
+				var newitem = $scope.allitems[item];
+				newitem.id = item;
+				$scope.items.push(newitem);
+			}
+		}
+		$scope.breadcrumbs = [];
+		while(parent != ""){
+			var item = $scope.allitems[parent];
+			$scope.breadcrumbs.push(parent);
+			parent = item.parent;
+		};
+		$scope.currentitem = $scope.breadcrumbs.shift();
+	};
+	$scope.findChildren = function(parent){
+		var count = 0;
+		for(var item in $scope.allitems) {
+			if ($scope.allitems[item].parent == parent) {
+				count++;
+			}
+		}
+		return count;
+	};
+	$scope.addItem = function(){
+		$scope.items.push($scope.newitem);
+	};
 }
 
 angular.module("ui.brimstone.tpls", ["template/slider/slider.html"]);

@@ -1,8 +1,14 @@
-[
 {
-	title:	"Finish Todo app"
+"7ygh": {
+	"title":	"Finish Todo app",
+	"due":		"July 1, 2013",
+	"completed":	false,
+	"parent":	""
 },
-{
-	title: "Add storage support somehow"
+"uj": {
+	"title":	"Figure out how to store lists",
+	"due":		"July 1, 2013",
+	"completed":	true,
+	"parent":	"7ygh"
 }
-]
+}
