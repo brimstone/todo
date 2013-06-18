@@ -1,14 +1,13 @@
 angular.module('todo_app', ['ui.bootstrap', 'ui.brimstone.tpls', 'ui.brimstone.slider', 'ngResource']);
 
 function todo_ctlr($scope, $resource) {
-	$scope.lists = $resource(':action.json');
+	$scope.api = $resource(':action.json');
 	$scope.blah = window.innerWidth;
 	$scope.allitems = [];
 	$scope.newitem = {};
 	$scope.breadcrumbs = [];
 	$scope.update = function() {
-		var g = $scope.lists.get({action: "getlist"}, function() {
-			$scope.allitems = g;
+		$scope.allitems = $scope.api.get({action: "getlist"}, function() {
 			$scope.switchTo("");
 		});
 	};
@@ -45,6 +44,9 @@ function todo_ctlr($scope, $resource) {
 	$scope.addItem = function(){
 		$scope.items.push($scope.newitem);
 	};
+	$scope.save = function() {
+		$scope.allitems.$save();
+	};
 }
 
 angular.module("ui.brimstone.tpls", ["template/slider/slider.html"]);
@@ -67,7 +69,7 @@ angular.module("template/slider/slider.html", []).run(["$templateCache", functio
 		"<label class=\"checkbox toggle well\">\n" +
 		"	<input id=\"{{id}}\" type=\"checkbox\" checked />\n" +
 		"	<p>\n" +
-		"		{{value}}\n" +
+//		"		{{value}}\n" +
 		"		<span>On</span>\n" +
 		"		<span>Off</span>\n" +
 		"	</p>\n" +
