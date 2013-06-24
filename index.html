@@ -81,7 +81,7 @@
 <div class="row-fluid mainlist">
 	<div class="span12">
 		<accordion close-others="true">
-			<accordion-group heading="{{item.title}}" ng-repeat="item in items">
+			<accordion-group heading="item.title" completed="item.completed" ng-repeat="item in items">
 				<div class="row-fluid">
 					<div class="span6">
 						<!-- Due -->
@@ -103,7 +103,8 @@
 					</div>
 				</div>
 			</accordion-group>
-			<accordion-group heading="Add Item?">
+
+			<!--accordion-group heading="Add Item?">
 				<div class="row-fluid">
 					<div class="span3">
 						Title:
@@ -125,24 +126,16 @@
 						<button class="btn" ng-click="addItem()">Add Item</button>
 					</div>
 				</div>
-			</accordion-group>
-			<accordion-group heading="Notes">
-				<div class="row-fluid mainlist">
-					<div class="span12">
-					<ul>
-						<li>http://angular-ui.github.io/bootstrap/</li>
-						<li>http://ghinda.net/css-toggle-switch/bootstrap.html</li>
-						<li>http://bootswatch.com/flatly/</li>
-						<li>http://www.lavishbootstrap.com/</li>
-						<li>http://bootstraphero.com/the-big-badass-list-of-twitter-bootstrap-resources</li>
-					</ul>
-					</div>
-				</div>
-			</accordion-group>
+			</accordion-group-->
 		</accordion>
 	</div>
 </div>
-
-
+<!--
+# http://angular-ui.github.io/bootstrap/
+# http://ghinda.net/css-toggle-switch/bootstrap.html
+# http://bootswatch.com/flatly/
+# http://www.lavishbootstrap.com/
+# http://bootstraphero.com/the-big-badass-list-of-twitter-bootstrap-resources
+-->
 </body>
 </html>

@@ -242,7 +242,7 @@ angular.module('ui.bootstrap.accordion', ['ui.bootstrap.collapse'])
     transclude:true,              // It transcludes the contents of the directive into the template
     replace: true,                // The element containing the directive will be replaced with the template
     templateUrl:'template/accordion/accordion-group.html',
-    scope:{ heading:'@', completed:'@' },        // Create an isolated scope and interpolate the heading attribute onto this scope
+    scope:{ heading:'=', completed:'=' },        // Create an isolated scope and interpolate the heading attribute onto this scope
     controller: ['$scope', function($scope) {
       this.setHeading = function(element) {
         this.heading = element;
@@ -413,14 +413,17 @@ angular.module('ui.bootstrap.buttons', [])
     }
   };
 }]);
+
 angular.module("template/accordion/accordion-group.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("template/accordion/accordion-group.html",
     "<div class=\"accordion-group\">\n" +
     "  <div class=\"accordion-heading\" >\n" +
-    "     <a class=\"accordion-icon-left\" ng-click=\"completed = !completed\"><i class=\"icon-ok icon-white\" ng-show=\"completed\"></i>\n" +
-    "     <i class=\"icon-ok\" ng-show=\"!completed\"></i></a>\n" +
+    "     <a class=\"accordion-icon-left\" ng-click=\"completed = !completed\"><i class=\"icon-ok icon-white\" ng-show=\"!completed\"></i>\n" +
+    "     <i class=\"icon-ok\" ng-show=\"completed\"></i></a>\n" +
+    "     <input type=\"text\" ng-model=\"heading\" ng-show=\"isOpen\">\n" +
     "     <a class=\"accordion-toggle\" ng-click=\"isOpen = !isOpen\" accordion-transclude=\"heading\">\n" +
-    "     {{heading}}\n" +
+    "     <span ng-show=\"!isOpen\">{{heading}}</span>\n" +
+    "     <span ng-show=\"isOpen\">close</span>\n" +
     "     </a></div>\n" +
     "  <div class=\"accordion-body\" collapse=\"!isOpen\">\n" +
     "    <div class=\"accordion-inner\" ng-transclude></div>  </div>\n" +
