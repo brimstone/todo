@@ -65,7 +65,7 @@ function todo_ctlr($scope, $resource) {
 			clearTimeout($scope.timer);
 		}
 		// set our timer to update our server after 2 seconds
-		$scope.timer = setTimeout(function(){alert("saving items"); $scope.allitems.$save(); $scope.timer = 0}, 5000);
+		$scope.timer = setTimeout(function(){$scope.allitems.$save(); $scope.timer = 0}, 5000);
 	}, true);
 }
 
