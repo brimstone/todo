@@ -420,11 +420,11 @@ angular.module("template/accordion/accordion-group.html", []).run(["$templateCac
     "  <div class=\"accordion-heading\" >\n" +
     "     <a class=\"accordion-icon-left\" ng-click=\"completed = !completed\"><i class=\"icon-ok icon-white\" ng-show=\"!completed\"></i>\n" +
     "     <i class=\"icon-ok\" ng-show=\"completed\"></i></a>\n" +
-    "     <input type=\"text\" ng-model=\"heading\" ng-show=\"isOpen\">\n" +
-    "     <a class=\"accordion-toggle\" ng-click=\"isOpen = !isOpen\" accordion-transclude=\"heading\">\n" +
-    "     <span ng-show=\"!isOpen\">{{heading}}</span>\n" +
-    "     <span ng-show=\"isOpen\">close</span>\n" +
-    "     </a></div>\n" +
+    "     <div class=\"accordion-toggle\" accordion-transclude=\"heading\">\n" +
+    "	     <input type=\"text\" ng-model=\"heading\" ng-show=\"isOpen\">\n" +
+    "	     <span ng-show=\"!isOpen\" ng-click=\"isOpen = true\">{{heading}}</span>\n" +
+    "	     <span class=\"accordion-close\" ng-show=\"isOpen\" ng-click=\"isOpen = false\">close</span>\n" +
+    "     </div></div>\n" +
     "  <div class=\"accordion-body\" collapse=\"!isOpen\">\n" +
     "    <div class=\"accordion-inner\" ng-transclude></div>  </div>\n" +
     "</div>");
